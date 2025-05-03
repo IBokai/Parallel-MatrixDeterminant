@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../src/determinant.h"
+#include "../src/determinant/determinant.h"
 
 TEST(DeterminantTest, 1x1MatrixTest) {
     std::ifstream file("../matrices/matrix1.txt");

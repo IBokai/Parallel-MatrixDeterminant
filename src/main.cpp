@@ -1,8 +1,8 @@
 #include <chrono>
 #include <fstream>
 
-#include "determinant.h"
-#include "matrix.h"
+#include "determinant/determinant.h"
+#include "matrix/matrix.h"
 
 int main(int argc, char* argv[]) {
     std::ifstream file("../matrices/matrix7.txt");

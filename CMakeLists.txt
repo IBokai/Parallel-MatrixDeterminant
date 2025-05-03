@@ -14,13 +14,13 @@ FetchContent_MakeAvailable(googletest)
 add_compile_options(-O3 -Wall -Werror)
 add_executable(determinant
   src/main.cpp
-  src/matrix.cpp
-  src/determinant.cpp
+  src/matrix/matrix.cpp
+  src/determinant/determinant.cpp
 )
 
 add_executable(determinant_tests
-  src/matrix.cpp
-  src/determinant.cpp
+  src/matrix/matrix.cpp
+  src/determinant/determinant.cpp
   tests/tests.cpp  
 )
 
