@@ -7,8 +7,8 @@
 
 // const methods
 
-struct AlignedDouble {
-    alignas(CACHE_LINE) double data;
+struct alignas(CACHE_LINE) AlignedDouble {
+    double data;
 };
 
 class Matrix {
