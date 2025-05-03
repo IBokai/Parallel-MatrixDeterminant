@@ -20,9 +20,8 @@ Matrix::Matrix(std::ifstream& inputFile) {
     dim = matrixData_.size();
 }
 
-Matrix::Matrix(Matrix&& other) noexcept {
+Matrix::Matrix(Matrix&& other) noexcept : dim(other.dim) {
     matrixData_ = std::move(other.matrixData_);
-    dim = other.dim;
     other.dim = 0;
 }
 
@@ -43,7 +42,7 @@ Matrix& Matrix::operator=(const Matrix& other) {
     return *this;
 }
 
-Matrix Matrix::strip(size_t column, size_t row) const {
+Matrix Matrix::Strip(size_t column, size_t row) const {
     std::vector<std::vector<AlignedDouble>> stripped_vector;
     for (size_t i = 0; i < dim; i++) {
         if (i == row) {
@@ -61,7 +60,7 @@ Matrix Matrix::strip(size_t column, size_t row) const {
     return Matrix(std::move(stripped_vector));
 }
 
-void Matrix::print() const {
+void Matrix::Print() const {
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             std::cout << matrixData_[i][j].data << ' ';

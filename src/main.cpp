@@ -5,13 +5,13 @@
 #include "matrix/matrix.h"
 
 int main(int argc, char* argv[]) {
-    std::ifstream file("../matrices/matrix7.txt");
-    Matrix m = Matrix(file);
+    std::ifstream file("../matrices/matrix8.txt");
+    Matrix matrix = Matrix(file);
     long double result = 0;
     if (argc == 1) {
         std::cout << "Executing non-parallel version\n";
         auto before = std::chrono::system_clock::now();
-        result = calculateDeterminantNonParallel(std::move(m));
+        result = CalculateDeterminantNonParallel(std::move(matrix));
         auto after = std::chrono::system_clock::now();
         auto time = std::chrono::duration_cast<std::chrono::microseconds>(after - before);
         std::cout << "Executing time (microseconds): " << time.count() << '\n';
@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
             std::cout << "Executing parallel version\n";
             // measure time here using std::system_clock::now()
             auto before = std::chrono::system_clock::now();
-            result = calculateDeterminant(std::move(m));
+            result = CalculateDeterminant(std::move(matrix));
             auto after = std::chrono::system_clock::now();
             auto time = std::chrono::duration_cast<std::chrono::microseconds>(after - before);
             std::cout << "Executing time (microseconds): " << time.count() << '\n';

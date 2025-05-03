@@ -3,7 +3,7 @@
 #include <mutex>
 #include <thread>
 
-long double calculateDeterminant(Matrix const& matrix, bool top_level) {
+long double CalculateDeterminant(Matrix const& matrix, bool top_level) {
     std::vector<std::thread> threads;
     std::mutex det_mutex;
     long double det = 0;
@@ -17,15 +17,16 @@ long double calculateDeterminant(Matrix const& matrix, bool top_level) {
     for (size_t column = 0; column < matrix.getDim(); column++) {
         if (top_level) {
             threads.emplace_back([&, column]() {
-                long double term = (column % 2 == 0 ? 1 : -1) * matrix.getData()[0][column].data *
-                                   calculateDeterminantNonParallel(matrix.strip(column, 0));
+                const long double term = (column % 2 == 0 ? 1 : -1) *
+                                         matrix.getData()[0][column].data *
+                                         CalculateDeterminantNonParallel(matrix.Strip(column, 0));
                 std::lock_guard<std::mutex> lock(det_mutex);
                 // false sharing
                 det += term;
             });
         } else {
             det += (column % 2 == 0 ? 1 : -1) * matrix.getData()[0][column].data *
-                   calculateDeterminantNonParallel(matrix.strip(column, 0));
+                   CalculateDeterminantNonParallel(matrix.Strip(column, 0));
         }
     }
     if (top_level) {
@@ -36,7 +37,7 @@ long double calculateDeterminant(Matrix const& matrix, bool top_level) {
     return det;
 }
 
-long double calculateDeterminantNonParallel(Matrix const& matrix) {
+long double CalculateDeterminantNonParallel(Matrix const& matrix) {
     long double det = 0;
     if (matrix.getDim() == 1) {
         return matrix.getData()[0][0].data;
@@ -47,7 +48,7 @@ long double calculateDeterminantNonParallel(Matrix const& matrix) {
     }
     for (size_t column = 0; column < matrix.getDim(); column++) {
         det += (column % 2 == 0 ? 1 : -1) * matrix.getData()[0][column].data *
-               calculateDeterminantNonParallel(matrix.strip(column, 0));
+               CalculateDeterminantNonParallel(matrix.Strip(column, 0));
     }
     return det;
 }

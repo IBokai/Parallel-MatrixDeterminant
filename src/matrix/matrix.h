@@ -1,10 +1,9 @@
 #pragma once
-#include <cmath>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <vector>
-#define CACHE_LINE 64
+#define CACHE_LINE 8
 
 // const methods
 
@@ -14,8 +13,8 @@ struct AlignedDouble {
 
 class Matrix {
 public:
-    Matrix(std::vector<std::vector<AlignedDouble>> matrixData);
-    Matrix(std::ifstream& inputFILE);
+    explicit Matrix(std::vector<std::vector<AlignedDouble>> matrixData);
+    explicit Matrix(std::ifstream& inputFILE);
     // noexcept, read about exceptions safety and noexcept relation (the most prominent example is
     // vector push_back())
     Matrix(Matrix&& other) noexcept;
@@ -32,8 +31,8 @@ public:
     Matrix& operator=(Matrix&& other) noexcept;
     ~Matrix() = default;
 
-    Matrix strip(size_t column, size_t row) const;
-    void print() const;
+    [[nodiscard]] Matrix Strip(size_t column, size_t row) const;
+    void Print() const;
     // should be constructor
     // const-ref return value
     std::vector<std::vector<AlignedDouble>> const& getData() const { return matrixData_; }

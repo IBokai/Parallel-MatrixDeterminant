@@ -2,6 +2,6 @@
 #pragma once
 #include "../matrix/matrix.h"
 
-long double calculateDeterminant(Matrix const& matrix, bool top_level = true);
+long double CalculateDeterminant(Matrix const& matrix, bool top_level = true);
 
-long double calculateDeterminantNonParallel(Matrix const& matrix);
+long double CalculateDeterminantNonParallel(Matrix const& matrix);
