@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#define CACHE_LINE 8
+#define CACHE_LINE 64
 
 // const methods
 
