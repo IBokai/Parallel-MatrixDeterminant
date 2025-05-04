@@ -17,11 +17,10 @@ int main(int argc, char* argv[]) {
             std::cout << "Wrong file name\n";
             return -1;
         }
-        Matrix matrix = Matrix(file);
         std::cout << "Executing parallel version\n";
         // measure time here using std::system_clock::now()
         auto before = std::chrono::system_clock::now();
-        result = CalculateDeterminant(matrix);
+        result = CalculateDeterminant(Matrix(file));
         auto after = std::chrono::system_clock::now();
         auto time = std::chrono::duration_cast<std::chrono::microseconds>(after - before);
         std::cout << "Executing time (microseconds): " << time.count() << '\n';
@@ -33,10 +32,9 @@ int main(int argc, char* argv[]) {
             std::cout << "Wrong file name\n";
             return -1;
         }
-        Matrix matrix = Matrix(file);
         std::cout << "Executing non-parallel version\n";
         auto before = std::chrono::system_clock::now();
-        result = CalculateDeterminantNonParallel(matrix);
+        result = CalculateDeterminantNonParallel(Matrix(file));
         auto after = std::chrono::system_clock::now();
         auto time = std::chrono::duration_cast<std::chrono::microseconds>(after - before);
         std::cout << "Executing time (microseconds): " << time.count() << '\n';
