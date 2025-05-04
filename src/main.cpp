@@ -13,11 +13,15 @@ int main(int argc, char* argv[]) {
         std::string filename = argv[2];
         std::string filepath = "../matrices/" + filename;
         std::ifstream file(filepath);
+        if(!file){
+            std::cout << "Wrong file name\n";
+            return -1;
+        }
         Matrix matrix = Matrix(file);
         std::cout << "Executing parallel version\n";
         // measure time here using std::system_clock::now()
         auto before = std::chrono::system_clock::now();
-        result = CalculateDeterminant(std::move(matrix));
+        result = CalculateDeterminant(matrix);
         auto after = std::chrono::system_clock::now();
         auto time = std::chrono::duration_cast<std::chrono::microseconds>(after - before);
         std::cout << "Executing time (microseconds): " << time.count() << '\n';
@@ -25,10 +29,14 @@ int main(int argc, char* argv[]) {
         std::string filename = argv[2];
         std::string filepath = "../matrices/" + filename;
         std::ifstream file(filepath);
+        if(!file){
+            std::cout << "Wrong file name\n";
+            return -1;
+        }
         Matrix matrix = Matrix(file);
         std::cout << "Executing non-parallel version\n";
         auto before = std::chrono::system_clock::now();
-        result = CalculateDeterminantNonParallel(std::move(matrix));
+        result = CalculateDeterminantNonParallel(matrix);
         auto after = std::chrono::system_clock::now();
         auto time = std::chrono::duration_cast<std::chrono::microseconds>(after - before);
         std::cout << "Executing time (microseconds): " << time.count() << '\n';
@@ -36,6 +44,6 @@ int main(int argc, char* argv[]) {
         std::cout << "Wrong arguments\n";
         return -1;
     }
-    std::cout << result << '\n';
+    std::cout << "Determinant: " <<result << '\n';
     return 0;
 }
