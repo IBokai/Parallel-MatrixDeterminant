@@ -17,17 +17,17 @@ public:
     explicit Matrix(std::ifstream& inputFILE);
     // noexcept, read about exceptions safety and noexcept relation (the most prominent example is
     // vector push_back())
-    Matrix(Matrix&& other) noexcept;
+    
     // operator=(Matrix&&) is not generated automatically, because move constructor is defined
     // Matrix m1, m2;
     // m1 = std::move(m2); // this will silently copy
     // rule of 5, rule of 6; cppcoreguidelines
-
-    Matrix(const Matrix& other) {
+    Matrix(Matrix const& other) {
         this->matrixData_ = other.matrixData_;
         this->dim = other.dim;
     }
-    Matrix& operator=(const Matrix& other);
+    Matrix& operator=(Matrix const& other);
+    Matrix(Matrix&& other) noexcept;
     Matrix& operator=(Matrix&& other) noexcept;
     ~Matrix() = default;
 
