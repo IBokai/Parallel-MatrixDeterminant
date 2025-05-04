@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
         std::string filename = argv[2];
         std::string filepath = "../matrices/" + filename;
         std::ifstream file(filepath);
-        if(!file){
+        if (!file) {
             std::cout << "Wrong file name\n";
             return -1;
         }
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
         std::string filename = argv[2];
         std::string filepath = "../matrices/" + filename;
         std::ifstream file(filepath);
-        if(!file){
+        if (!file) {
             std::cout << "Wrong file name\n";
             return -1;
         }
@@ -44,6 +44,6 @@ int main(int argc, char* argv[]) {
         std::cout << "Wrong arguments\n";
         return -1;
     }
-    std::cout << "Determinant: " <<result << '\n';
+    std::cout << "Determinant: " << result << '\n';
     return 0;
 }

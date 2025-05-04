@@ -17,7 +17,7 @@ public:
     explicit Matrix(std::ifstream& inputFILE);
     // noexcept, read about exceptions safety and noexcept relation (the most prominent example is
     // vector push_back())
-    
+
     // operator=(Matrix&&) is not generated automatically, because move constructor is defined
     // Matrix m1, m2;
     // m1 = std::move(m2); // this will silently copy
